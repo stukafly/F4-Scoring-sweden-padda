@@ -75,7 +75,7 @@ def judgepoint():
     Stortminus ["command"] = spinminus
 
 
-    manresult.config (text= str(k), font=('Times', 20))
+    manresult.config (text= str(x), font=('Times', 20))
     manresult["borderwidth"] = "1px"
     manresult["fg"] = "#333333"
     manresult["justify"] = "center"
@@ -167,7 +167,7 @@ manresult = tkinter.Label(window,font=('Times', 80))
 startnamn = tkinter.Label(frame, text="", font=('Arial', 25), width=15)
 startnamn1 = tkinter.Label(frame, text="", font=('Arial', 25), width=15)
 x = float(8.0)
-k = float(8.0)
+
 
 
 window.mainloop()
