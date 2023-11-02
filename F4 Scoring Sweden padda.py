@@ -75,7 +75,7 @@ def judgepoint():
     Stortminus ["command"] = spinminus
 
 
-    manresult.config (text= str(x), font=('Times', 20))
+    manresult.config (text= str(x), font=('Times', 100))
     manresult["borderwidth"] = "1px"
     manresult["fg"] = "#333333"
     manresult["justify"] = "center"
@@ -117,7 +117,7 @@ def spinplus():
     global x
     if x<=9.5:
      x +=0.5
-     manresult.config(text=str(x), font=('Times', 20))
+     manresult.config(text=str(x), font=('Times', 100))
 
 
 
@@ -128,7 +128,7 @@ def spinminus  ():
     global x
     if x >= 0.5:
         x -= 0.5
-        manresult.config(text=str(x), font=('Times', 20))
+        manresult.config(text=str(x), font=('Times', 100))
 
 
 window = tkinter.Tk()
