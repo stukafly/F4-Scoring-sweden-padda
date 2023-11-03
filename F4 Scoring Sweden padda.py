@@ -9,6 +9,9 @@ def judges_data():
 
     # Create Table
         conn = sqlite3.connect('F4scoring.db')
+
+
+
         table_create_query = '''CREATE TABLE IF NOT EXISTS judge_Data 
                     (IDnr int key, judge TEXT, judgenr INT, pilot TEXT, startnr INT, R1M1 INT, R1M2 INT, 
                     R1M3 INT, R1M4 INT, R1M5 INT, R1M6 INT, R1M7 INT, R1M8 INT, R1M9 INT, R1M10 INT, R1M11 INT, 
@@ -18,6 +21,8 @@ def judges_data():
         conn.execute(table_create_query)
         c = conn.cursor()
 
+
+        c.execute('DELETE FROM judge_Data;', )
         # Insert Data
         data_insert_query = '''INSERT INTO judge_Data (IDnr , judge, judgenr, 
             pilot, startnr, R1MT1, R1MT2, R1MT3, R1MT4, R1MT5, R1MT6, R1MT7, R1MT8, R1MT9, R1MT10, R1MT11, R1MT12, R1MT13) VALUES 
