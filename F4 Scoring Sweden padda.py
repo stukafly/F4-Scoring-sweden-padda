@@ -2,6 +2,7 @@ import tkinter
 from tkinter import ttk
 from tkinter import messagebox
 import sqlite3
+import csv
 
 
 
@@ -13,7 +14,7 @@ def judges_data():
 
 
         table_create_query = '''CREATE TABLE IF NOT EXISTS judge_Data 
-                    (IDnr int key, judge TEXT, judgenr INT, pilot TEXT, startnr INT, R1M1 INT, R1M2 INT, 
+                    (IDnr TEXT key, judge TEXT, judgenr TEXT, pilot TEXT, startnr TEXT, R1M1 INT, R1M2 INT, 
                     R1M3 INT, R1M4 INT, R1M5 INT, R1M6 INT, R1M7 INT, R1M8 INT, R1M9 INT, R1M10 INT, R1M11 INT, 
                     R1M12 INT, R1M13 INT, R1MT1 TEXT, R1MT2 TEXT, R1MT3 TEXT, R1MT4 TEXT, R1MT5 TEXT, R1MT6 TEXT,
                     R1MT7 TEXT, R1MT8 TEXT, R1MT9 TEXT, R1MT10 TEXT, R1MT11 TEXT, R1MT12 TEXT, R1MT13 TEXT,
@@ -32,14 +33,30 @@ def judges_data():
 
         c.execute('DELETE FROM judge_Data;', )
         # Insert Data
-        data_insert_query = '''INSERT INTO judge_Data (IDnr , judge, judgenr, 
-            pilot, startnr, R1MT1, R1MT2, R1MT3, R1MT4, R1MT5, R1MT6, R1MT7, R1MT8, R1MT9, R1MT10, R1MT11, R1MT12, R1MT13) VALUES 
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'''
-        data_insert_tuple = (1, "BÖRJE", 2,
-                                 "otto", 1, "start", "loop", "liggande åtta", "roll", "kubansk åtta", "wingover", "under 6 M",
-                                 "sjunkande cirkel","touch and go", "landning", "ljud", "jämnhet", "hastighet")
 
-        c.execute(data_insert_query, data_insert_tuple)
+
+# reading data from the CSV file
+        with open('data1.csv') as f:
+             reader = csv.reader(f,delimiter="'")
+             data = list(reader)
+        data_insert_query = '''INSERT INTO judge_Data (
+        IDnr, judge, judgenr, pilot, startnr, R1M1, R1M2, 
+                         R1M3, R1M4, R1M5, R1M6, R1M7, R1M8, R1M9, R1M10, R1M11, 
+                        R1M12, R1M13, R1MT1, R1MT2, R1MT3, R1MT4, R1MT5, R1MT6,
+                         R1MT7, R1MT8, R1MT9, R1MT10, R1MT11, R1MT12, R1MT13,
+                         R2M1, R2M2, 
+                         R2M3, R2M4, R2M5, R2M6, R2M7, R2M8, R2M9, R2M10, R2M11, 
+                         R2M12, R2M13, R2MT1, R2MT2, R2MT3, R2MT4, R2MT5, R2MT6,
+                         R2MT7, R2MT8, R2MT9, R2MT10, R2MT11, R2MT12, R2MT13,
+                         R3M1, R3M2, 
+                         R3M3, R3M4, R3M5, R3M6, R3M7, R3M8, R3M9, R3M10, R3M11, 
+                         R3M12, R3M13, R3MT1, R3MT2, R3MT3, R3MT4, R3MT5, R3MT6,
+                         R3MT7, R3MT8, R3MT9, R3MT10, R3MT11, R3MT12, R3MT13) VALUES
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'''
+
+
+        c.executemany(data_insert_query, data)
+
 
 
         conn.commit()
